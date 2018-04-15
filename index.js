@@ -148,7 +148,7 @@ HTTP_RGB.prototype = {
                         .on('set', this.setSaturation.bind(this));
                 }
 
-                return [lightbulbService];
+                return [informationService, lightbulbService];
 
             case 'Switch':
                 this.log('creating Switch');
@@ -164,7 +164,7 @@ HTTP_RGB.prototype = {
                         .getCharacteristic(Characteristic.On)
                         .on('set', this.setPowerState.bind(this));
                 }
-                return [switchService];
+                return [informationService, switchService];
 
             /*
                These are included here as an example of what other
@@ -185,7 +185,7 @@ HTTP_RGB.prototype = {
                     .on('get', this.getLockTarget.bind(this))
                     .on('set', this.setLockTarget.bind(this));
 
-                return [lockService];
+                return [informationService, lockService];
 
             case 'Smoke':
                 var smokeService = new Service.SmokeSensor(this.name);
@@ -194,7 +194,7 @@ HTTP_RGB.prototype = {
                     .getCharacteristic(Characteristic.SmokeDetected)
                     .on('set', this.getSmokeDetected.bind(this));
 
-                return [smokeService];
+                return [informationService, smokeService];
 
             case 'Motion':
                 var motionService = new Service.MotionSensor(this.name);
@@ -203,7 +203,7 @@ HTTP_RGB.prototype = {
                     .getCharacteristic(Characteristic.MotionDetected)
                     .on('get', this.getMotionDetected.bind(this));
 
-                return [motionService];
+                return [informationService, motionService];
 
             case 'Temp':
                 var temperatureService = new Service.TemperatureSensor(this.name);
@@ -217,7 +217,7 @@ HTTP_RGB.prototype = {
                     .getCharacteristic(Characteristic.CurrentRelativeHumidity)
                     .on('get', this.getHumidity.bind(this));
 
-                return [temperatureService, humidityService];
+                return [informationService, temperatureService, humidityService];
 
             */
 
