@@ -32,6 +32,10 @@ function HTTP_RGB(log, config) {
     this.http_method                   = config.http_method               || 'GET';
     this.username                      = config.username                  || '';
     this.password                      = config.password                  || '';
+    
+    this.manufacturer                  = config.manufacturer              || 'HTTP Manufacturer';
+    this.model                         = config.model                     || 'homebridge-better-http-rgb';
+    this.serial_number                 = config.serial_number             || 'HTTP Serial Number';
 
     // Handle the basic on/off
     this.switch = { powerOn: {}, powerOff: {} };
@@ -106,9 +110,9 @@ HTTP_RGB.prototype = {
         var informationService = new Service.AccessoryInformation();
 
         informationService
-            .setCharacteristic(Characteristic.Manufacturer, 'HTTP Manufacturer')
-            .setCharacteristic(Characteristic.Model, 'homebridge-better-http-rgb')
-            .setCharacteristic(Characteristic.SerialNumber, 'HTTP Serial Number');
+            .setCharacteristic(Characteristic.Manufacturer, this.manufacturer)
+            .setCharacteristic(Characteristic.Model, this.model)
+            .setCharacteristic(Characteristic.SerialNumber, this.serial_number);
 
         switch (this.service) {
             case 'Light':
